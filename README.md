@@ -20,7 +20,7 @@ Suppose you only have a limited number of threads on your machine. The Pool patt
 
 As shown in the following diagram, the tasks are queued up in the `Tasks Channel`, picked up by a free `Worker` and the results of each `IO Bound Work` is published to the `Results Channel`.
 
-![Pool Pattern](./assets/PoolWork.drawio)
+![Pool Pattern](./assets/PoolWork.drawio.png)
 
 Both the `Tasks Channel` and `Results Channel` have a capacity of T (# of tasks).
 
