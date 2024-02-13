@@ -27,6 +27,4 @@ Both the `Tasks Channel` and `Results Channel` have a capacity of T (# of tasks)
 A worker only completes when there are no more tasks in `Tasks Channel` to be processed.
 Workers get allocated tasks to run concurrently.
 
-On the other hand, 
-Goroutines 
 
