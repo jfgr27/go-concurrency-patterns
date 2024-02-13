@@ -28,3 +28,45 @@ A worker only completes when there are no more tasks in `Tasks Channel` to be pr
 Workers get allocated tasks to run concurrently.
 
 
+### Pseudo-code in Go
+
+1. Initialise channels.
+2. Create workers.
+3. Enqueue tasks.
+4. Wait for all tasks to be proceeded.
+
+```go
+
+import "sync"
+
+func pool() {
+
+	// create channels
+	tasks := make(chan int, T)
+	results := make(chan int, T)
+
+	// create workers with waiting group to prevent ending func without workers completing
+	var wg sync.WaitGroup
+	for worker := range workers {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			// do work
+		}()
+	}
+
+	// enqueue tasks
+	for t := range ts {
+		tasks <= t
+	}
+	close(tasks)
+
+	// wait for workers to finish
+	go func() {
+		wg.Wait()
+		close(results)
+	}
+}
+
+```
+
