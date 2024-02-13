@@ -14,16 +14,18 @@ type PoolWork struct {
 func worker(id int, tasks <-chan int, results chan<- int) {
 	for task := range tasks {
 		fmt.Printf("Worker %d processing task %d\n", id, task)
-		time.Sleep(time.Millisecond)
+		time.Sleep(time.Millisecond) // makes it IO bound.
 		results <- task * 2
 	}
 }
 
 // Runs w workers concurrently.
-// Each will pick work on all tasks, doubling value.
+// Each will pick work on tasks, sleeping (io op), doubling value and adding to result channelt
 // t tasks are added to tasks channels.
-// A worker id will pick up, increment and write to results
+//
 
+
+// Note: requires sleep to make io bound. Go routines on single CPU so no IO, no real benefit.
 // Note: if t >> w, workers will process slowly
 // Note if w >> t, workers won't all be used
 func (c *PoolWork) work() {
