@@ -33,7 +33,7 @@ func (c *PoolWork) work() {
 	defer timeit(s)()
 
 	tasks := make(chan int, c.t)
-	results := make(chan int, c.w)
+	results := make(chan int, c.t)
 
 	var wg sync.WaitGroup
 
