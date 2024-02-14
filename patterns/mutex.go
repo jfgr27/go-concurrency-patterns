@@ -17,7 +17,7 @@ type Container struct {
 
 
 func (c *Container) incMutex(name string) {
-    c.mu.Lock()
+    c.mu.Lock() // thread not in lock will block here until free.
     defer c.mu.Unlock()
     c.counters[name]++
 }

@@ -24,7 +24,6 @@ func worker(id int, tasks <-chan int, results chan<- int) {
 // t tasks are added to tasks channels.
 //
 
-
 // Note: requires sleep to make io bound. Go routines on single CPU so no IO, no real benefit.
 // Note: if t >> w, workers will process slowly
 // Note if w >> t, workers won't all be used
@@ -57,7 +56,6 @@ func (c *PoolWork) work() {
 		wg.Wait()
 		close(results)
 	}()
-
 
 	// Collect results
 	var res int
